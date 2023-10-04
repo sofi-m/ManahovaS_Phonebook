@@ -1,0 +1,83 @@
+using System;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Collections.Generic;
+using System.Collections;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Dictionary<string, string> phonebook = new Dictionary<string, string>();
+
+        while (true)
+        {
+            Console.WriteLine("GLAMOROUS phonebook");
+            Console.WriteLine();
+            Console.WriteLine("1. Add GLAMOROUS Contact");
+            Console.WriteLine("2. Search GLAMOROUS Contact");
+            Console.WriteLine("3. Delete GLAMOROUS Contact");
+            Console.WriteLine("4. Exit the GLAMOROUS phonebook ");
+            Console.Write("Enter your choice: ");
+
+            int choice;
+            if (int.TryParse(Console.ReadLine(), out choice))
+            {
+                switch (choice)
+                {
+                    case 1:
+                        Console.Write("Name: ");
+                        string name = Console.ReadLine();
+                        Console.Write("Phone number: ");
+                        string phoneNumber = Console.ReadLine();
+                        phonebook[name] = phoneNumber;
+                        Console.WriteLine("Contact is added to the GLAMOROUS phonebook.");
+                        break;
+
+                    case 2:
+                        Console.Write("Search name: ");
+                        string searchName = Console.ReadLine();
+                        if (phonebook.ContainsKey(searchName))
+                        {
+                            Console.WriteLine($"Contact found: {searchName} - {phonebook[searchName]}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Contact is not found in the GLAMOROUS phonebook.");
+                        }
+                        break;
+
+                    case 3:
+                        Console.Write("Delete name: ");
+                        string deleteName = Console.ReadLine();
+                        if (phonebook.ContainsKey(deleteName))
+                        {
+                            phonebook.Remove(deleteName);
+                            Console.WriteLine("Contact is deleted from the GLAMOROUS phonebook.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Contact is not found in the GLAMOROUS phonebook.");
+                        }
+                        break;
+
+                    case 4:
+                        Environment.Exit(0);
+                        break;
+
+                    default:
+                        Console.WriteLine("Not GLAMOROUS name. Try again!");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Not GLAMOROUS input. Enter a number!");
+            }
+
+            Console.WriteLine();
+        }
+    }
+}
+
